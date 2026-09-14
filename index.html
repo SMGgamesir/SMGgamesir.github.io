@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SMG Store</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f1117;
+            color: white;
+        }
+
+        header {
+            background: #171a23;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #292d38;
+        }
+
+        header h1 {
+            font-size: 32px;
+        }
+
+        header p {
+            color: #aaa;
+            margin-top: 8px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #aaa;
+            font-size: 18px;
+        }
+
+        .games {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .game {
+            background: #191c25;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #292d38;
+        }
+
+        .game-image {
+            height: 180px;
+            background: #252936;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .game-info {
+            padding: 20px;
+        }
+
+        .game-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .game-info p {
+            color: #aaa;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .download {
+            display: block;
+            text-align: center;
+            background: #5865f2;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .download:hover {
+            background: #4752c4;
+        }
+
+        footer {
+            text-align: center;
+            color: #777;
+            padding: 40px 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎮 SMG Store</h1>
+    <p>فروشگاه بازی‌های SMG</p>
+</header>
+
+<div class="container">
+
+    <section class="hero">
+
+        <h2>بازی‌های SMG</h2>
+
+        <p>
+            بازی‌های خودم را اینجا منتشر می‌کنم.
+        </p>
+
+    </section>
+
+
+    <section class="games">
+
+        <div class="game">
+
+            <div class="game-image">
+                🎮
+            </div>
+
+            <div class="game-info">
+
+                <h3>بازی من</h3>
+
+                <p>
+                    توضیحات بازی را اینجا قرار می‌دهیم.
+                    نسخه 1.0
+                </p>
+
+                <a class="download" href="#">
+                    دانلود APK
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<footer>
+
+    © 2026 SMG Store
+
+</footer>
+
+</body>
+
+  </html>
