@@ -1,10 +1,289 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl">
 <head>
-    <title>SMG Store</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>نام بازی | SMG Store</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0b0f;
+            color: #ffffff;
+            line-height: 1.8;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        header {
+            background: #111118;
+            border-bottom: 1px solid #25252f;
+            padding: 20px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .back {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .back:hover {
+            color: #fff;
+        }
+
+        .game-section {
+            padding: 50px 0;
+        }
+
+        .game-card {
+            background: #14141c;
+            border: 1px solid #272733;
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .game-top {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 35px;
+            align-items: start;
+        }
+
+        .cover {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #20202a;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            border: 1px solid #30303c;
+            overflow: hidden;
+        }
+
+        .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .game-title {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: #b8b8c2;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .info-box {
+            background: #1c1c25;
+            padding: 14px;
+            border-radius: 12px;
+            color: #ccc;
+        }
+
+        .info-box strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .download {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 16px;
+            background: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .download:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .warning {
+            margin-top: 15px;
+            color: #888;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .about {
+            margin-top: 35px;
+            padding-top: 30px;
+            border-top: 1px solid #292933;
+        }
+
+        .about h2 {
+            margin-bottom: 12px;
+        }
+
+        .about p {
+            color: #aaa;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #666;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+            .game-top {
+                grid-template-columns: 1fr;
+            }
+
+            .cover {
+                max-width: 300px;
+                margin: auto;
+            }
+
+            .game-title {
+                font-size: 30px;
+            }
+
+            .info {
+                grid-template-columns: 1fr;
+            }
+
+            .game-card {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Game 1</h1>
-    <p>صفحه بازی کار می‌کند!</p>
+
+<header>
+    <div class="container header-content">
+        <div class="logo">🎮 SMG Store</div>
+
+        <a class="back" href="index.html">
+            ← بازگشت به فروشگاه
+        </a>
+    </div>
+</header>
+
+<main class="game-section">
+    <div class="container">
+
+        <div class="game-card">
+
+            <div class="game-top">
+
+                <div class="cover">
+                    🎮
+                </div>
+
+                <div>
+
+                    <h1 class="game-title">
+                        نام بازی من
+                    </h1>
+
+                    <p class="description">
+                        توضیحات بازی خودت را اینجا بنویس.
+                        در این قسمت می‌توانی داستان بازی، ویژگی‌های آن
+                        و اطلاعات مهم مربوط به بازی را معرفی کنی.
+                    </p>
+
+                    <div class="info">
+
+                        <div class="info-box">
+                            <strong>پلتفرم</strong>
+                            Android
+                        </div>
+
+                        <div class="info-box">
+                            <strong>نسخه</strong>
+                            1.0
+                        </div>
+
+                        <div class="info-box">
+                            <strong>حجم</strong>
+                            100 MB
+                        </div>
+
+                        <div class="info-box">
+                            <strong>سازنده</strong>
+                            SMG Games
+                        </div>
+
+                    </div>
+
+                    <a class="download" href="#">
+                        📥 دانلود APK
+                    </a>
+
+                    <p class="warning">
+                        لینک دانلود بعداً به فایل APK واقعی متصل می‌شود.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="about">
+
+                <h2>درباره بازی</h2>
+
+                <p>
+                    این قسمت برای توضیحات کامل‌تر بازی است.
+                    می‌توانی داستان، امکانات، ویژگی‌ها و تغییرات
+                    نسخه‌های مختلف بازی را اینجا قرار بدهی.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    © 2026 SMG Store
+</footer>
+
 </body>
 </html>
