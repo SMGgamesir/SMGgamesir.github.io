@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SMG Store | فروشگاه بازی</title>
+    <title>SMG Store | بازی‌های SMG Games</title>
 
-    <meta name="description" content="SMG Store، فروشگاه بازی‌های SMG">
+    <meta name="description" content="SMG Store، فروشگاه رسمی بازی‌های ساخته شده توسط SMG Games">
 
     <style>
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         html {
@@ -22,175 +21,365 @@
         }
 
         body {
-            font-family: Arial, Tahoma, sans-serif;
+            font-family: Tahoma, Arial, sans-serif;
             background:
-                radial-gradient(circle at top right, #252b55 0%, transparent 35%),
-                radial-gradient(circle at bottom left, #241a43 0%, transparent 30%),
-                #080a10;
+                radial-gradient(circle at 15% 20%, rgba(104, 117, 255, 0.15), transparent 28%),
+                radial-gradient(circle at 85% 10%, rgba(140, 70, 255, 0.12), transparent 25%),
+                #070811;
             color: #ffffff;
-            min-height: 100vh;
+            line-height: 1.8;
+            overflow-x: hidden;
         }
 
-        /* ================= HEADER ================= */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
 
         header {
             position: sticky;
             top: 0;
-            z-index: 100;
-            background: rgba(10, 12, 18, 0.85);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            z-index: 1000;
+            width: 100%;
+            padding: 14px 6%;
+            background: rgba(7, 8, 17, 0.72);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
 
-        .nav {
-            max-width: 1150px;
+        .navbar {
+            max-width: 1250px;
             margin: auto;
-            padding: 18px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 25px;
         }
 
         .logo {
-    display: flex;
-    align-items: center;
-}
+            display: flex;
+            align-items: center;
+        }
 
-.logo img {
-    width: 170px;
-    height: auto;
-    display: block;
-}
+        .logo img {
+            width: 170px;
+            height: auto;
+            display: block;
+        }
 
         .nav-links {
             display: flex;
-            gap: 25px;
+            align-items: center;
+            gap: 30px;
         }
 
         .nav-links a {
-            color: #aaa;
-            text-decoration: none;
-            transition: 0.2s;
+            color: #bfc2d8;
+            font-size: 14px;
+            transition: 0.3s;
         }
 
         .nav-links a:hover {
-            color: white;
+            color: #ffffff;
         }
 
-        /* ================= HERO ================= */
+        .nav-button {
+            padding: 10px 18px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #6875ff, #855cff);
+            color: white !important;
+            box-shadow: 0 8px 25px rgba(104,117,255,0.25);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(104,117,255,0.4);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
 
         .hero {
-            max-width: 1150px;
+            position: relative;
+            max-width: 1250px;
+            min-height: 680px;
             margin: auto;
-            padding: 100px 20px 80px;
-            text-align: center;
+            padding: 100px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
         }
 
-        .hero-badge {
-            display: inline-block;
-            background: rgba(104, 117, 255, 0.12);
-            border: 1px solid rgba(104, 117, 255, 0.3);
-            color: #9da5ff;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 14px;
+        .hero-content {
+            max-width: 650px;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
             margin-bottom: 25px;
+            border: 1px solid rgba(104,117,255,0.3);
+            border-radius: 50px;
+            background: rgba(104,117,255,0.08);
+            color: #aeb5ff;
+            font-size: 13px;
         }
 
         .hero h1 {
-            font-size: clamp(42px, 7vw, 75px);
-            line-height: 1.1;
-            margin-bottom: 20px;
+            font-size: clamp(42px, 6vw, 76px);
+            line-height: 1.15;
+            margin-bottom: 25px;
+            letter-spacing: -2px;
         }
 
         .hero h1 span {
-            color: #6875ff;
+            background: linear-gradient(90deg, #7180ff, #b26cff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            max-width: 650px;
-            margin: auto;
-            color: #a8abb8;
-            font-size: 18px;
-            line-height: 1.9;
+            color: #a9adc3;
+            font-size: 17px;
+            max-width: 600px;
+            margin-bottom: 35px;
         }
 
-        .hero-button {
-            display: inline-block;
-            margin-top: 35px;
-            padding: 15px 30px;
-            border-radius: 12px;
-            background: #6875ff;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.25s;
-            box-shadow: 0 10px 35px rgba(104,117,255,0.25);
-        }
-
-        .hero-button:hover {
-            transform: translateY(-3px);
-            background: #7884ff;
-            box-shadow: 0 15px 45px rgba(104,117,255,0.35);
-        }
-
-        /* ================= CONTAINER ================= */
-
-        .container {
-            max-width: 1150px;
-            margin: auto;
-            padding: 0 20px;
-        }
-
-        /* ================= SECTION TITLE ================= */
-
-        .section-title {
+        .hero-buttons {
             display: flex;
-            justify-content: space-between;
-            align-items: end;
-            margin-bottom: 25px;
+            gap: 14px;
+            flex-wrap: wrap;
         }
 
-        .section-title h2 {
-            font-size: 30px;
-        }
-
-        .section-title p {
-            color: #777b89;
-            margin-top: 5px;
-        }
-
-        /* ================= GAMES ================= */
-
-        .games {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 25px;
-        }
-
-        .game {
-            background: rgba(20, 23, 33, 0.85);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            overflow: hidden;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 24px;
+            border-radius: 14px;
+            font-weight: bold;
             transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6875ff, #865bff);
+            box-shadow: 0 10px 35px rgba(104,117,255,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(104,117,255,0.45);
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.04);
+            color: #d7d9e8;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-3px);
+        }
+
+        /* Hero visual */
+
+        .hero-visual {
+            width: 440px;
+            height: 440px;
             position: relative;
-        }
-
-        .game:hover {
-            transform: translateY(-8px);
-            border-color: rgba(104,117,255,0.5);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-        }
-
-        .game-image {
-            height: 210px;
-            background:
-                linear-gradient(135deg, #202536, #151722);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 75px;
+        }
+
+        .hero-orb {
+            width: 310px;
+            height: 310px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 35% 30%, rgba(145,155,255,0.35), transparent 35%),
+                linear-gradient(135deg, rgba(104,117,255,0.2), rgba(145,78,255,0.12));
+            border: 1px solid rgba(125,137,255,0.25);
+            box-shadow:
+                0 0 80px rgba(104,117,255,0.22),
+                inset 0 0 60px rgba(104,117,255,0.08);
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .hero-orb::before {
+            content: "🎮";
+            position: absolute;
+            font-size: 105px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            filter: drop-shadow(0 0 30px rgba(104,117,255,0.5));
+        }
+
+        .glow-ring {
+            position: absolute;
+            width: 390px;
+            height: 390px;
+            border: 1px solid rgba(104,117,255,0.14);
+            border-radius: 50%;
+            animation: rotate 18s linear infinite;
+        }
+
+        .glow-ring::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #7d88ff;
+            border-radius: 50%;
+            top: 25px;
+            right: 70px;
+            box-shadow: 0 0 20px #7d88ff;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        section {
+            max-width: 1250px;
+            margin: auto;
+            padding: 90px 6%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: #7c88ff;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            margin-top: 8px;
+        }
+
+        .section-title p {
+            color: #858aa3;
+            margin-top: 10px;
+        }
+
+        /* =========================
+           FEATURED GAME
+        ========================= */
+
+        .featured {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            min-height: 370px;
+            overflow: hidden;
+            border-radius: 28px;
+            border: 1px solid rgba(255,255,255,0.07);
+            background:
+                linear-gradient(120deg, rgba(104,117,255,0.12), rgba(255,255,255,0.025));
+            box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+        }
+
+        .featured-image {
+            min-height: 370px;
+            background:
+                linear-gradient(90deg, rgba(7,8,17,0.1), rgba(7,8,17,0.5)),
+                linear-gradient(135deg, #11152c, #161024);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 90px;
+        }
+
+        .featured-content {
+            padding: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-label {
+            color: #8994ff;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .featured-content h3 {
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+
+        .featured-content p {
+            color: #999db4;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           GAMES
+        ========================= */
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .game-card {
+            overflow: hidden;
+            border-radius: 22px;
+            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.035);
+            transition: 0.35s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(104,117,255,0.35);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+        }
+
+        .game-image {
+            height: 230px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #11152c, #151021);
             overflow: hidden;
         }
 
@@ -198,397 +387,768 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
+            transition: 0.4s;
+        }
+
+        .game-card:hover .game-image img {
+            transform: scale(1.05);
+        }
+
+        .game-placeholder {
+            font-size: 70px;
+            opacity: 0.8;
         }
 
         .game-info {
-            padding: 22px;
+            padding: 25px;
         }
 
         .game-info h3 {
-            font-size: 23px;
-            margin-bottom: 8px;
+            font-size: 22px;
+            margin-bottom: 7px;
         }
 
         .game-info p {
-            color: #999daa;
-            line-height: 1.8;
+            color: #858aa2;
+            font-size: 14px;
             margin-bottom: 18px;
         }
 
         .game-meta {
             display: flex;
-            gap: 8px;
-            margin-bottom: 18px;
+            gap: 10px;
             flex-wrap: wrap;
+            margin-bottom: 20px;
         }
 
-        .tag {
-            background: #202431;
-            color: #aaaebe;
+        .game-meta span {
             padding: 5px 10px;
-            border-radius: 7px;
+            border-radius: 8px;
+            background: rgba(104,117,255,0.08);
+            color: #aeb5ff;
             font-size: 12px;
         }
 
-        .download {
+        .game-button {
             display: block;
+            width: 100%;
+            padding: 12px;
             text-align: center;
-            background: #6875ff;
+            border-radius: 11px;
+            background: rgba(104,117,255,0.12);
+            color: #aeb5ff;
+            transition: 0.3s;
+        }
+
+        .game-button:hover {
+            background: linear-gradient(135deg, #6875ff, #855cff);
             color: white;
-            text-decoration: none;
-            padding: 13px;
-            border-radius: 10px;
-            font-weight: bold;
-            transition: 0.2s;
         }
 
-        .download:hover {
-            background: #7b86ff;
-            transform: translateY(-2px);
-        }
-
-        /* ================= STATS ================= */
+        /* =========================
+           STATS
+        ========================= */
 
         .stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            margin: 80px 0;
         }
 
         .stat {
-            background: rgba(20,23,33,0.75);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 16px;
-            padding: 25px;
+            padding: 35px 20px;
             text-align: center;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.025);
         }
 
-        .stat strong {
-            display: block;
-            font-size: 30px;
-            color: #6875ff;
-            margin-bottom: 5px;
+        .stat-number {
+            font-size: 35px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #7380ff, #ad68ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .stat span {
-            color: #858996;
+        .stat p {
+            color: #858aa2;
+            margin-top: 5px;
         }
 
-        /* ================= ABOUT ================= */
+        /* =========================
+           ABOUT
+        ========================= */
 
         .about {
-            background: rgba(20,23,33,0.65);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 20px;
-            padding: 35px;
-            margin-bottom: 70px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
         }
 
-        .about h2 {
+        .about-box {
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.07);
+            background:
+                radial-gradient(circle at top right, rgba(104,117,255,0.12), transparent 45%),
+                rgba(255,255,255,0.025);
+        }
+
+        .about-box h3 {
+            font-size: 28px;
             margin-bottom: 15px;
         }
 
-        .about p {
-            color: #999daa;
+        .about-box p {
+            color: #9296aa;
             line-height: 2;
         }
 
-        /* ================= FOOTER ================= */
+        .about-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .about-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .about-icon {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(104,117,255,0.12);
+            font-size: 20px;
+        }
+
+        .about-item strong {
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .about-item span {
+            color: #81869e;
+            font-size: 13px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
-            border-top: 1px solid rgba(255,255,255,0.07);
-            padding: 35px 20px;
-            text-align: center;
-            color: #666b78;
+            margin-top: 50px;
+            padding: 45px 6%;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            background: rgba(0,0,0,0.18);
         }
 
-        footer strong {
-            color: #8b91ff;
+        .footer-content {
+            max-width: 1250px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
 
-        /* ================= MOBILE ================= */
+        .footer-logo {
+            font-weight: bold;
+            font-size: 20px;
+        }
 
-        @media (max-width: 700px) {
+        .footer-logo span {
+            color: #7180ff;
+        }
 
-            .nav {
-                padding: 15px;
-            }
+        .footer-text {
+            color: #70758d;
+            font-size: 13px;
+        }
+
+        /* =========================
+           SCROLL TOP
+        ========================= */
+
+        .scroll-top {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(104,117,255,0.85);
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 10px 30px rgba(104,117,255,0.3);
+            transition: 0.3s;
+            z-index: 900;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px);
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 850px) {
 
             .nav-links {
-                gap: 12px;
-                font-size: 13px;
+                gap: 14px;
+            }
+
+            .nav-links a:not(.nav-button) {
+                display: none;
             }
 
             .hero {
-                padding: 70px 20px 60px;
+                min-height: auto;
+                padding-top: 80px;
+                padding-bottom: 70px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-visual {
+                width: 320px;
+                height: 320px;
+            }
+
+            .hero-orb {
+                width: 230px;
+                height: 230px;
+            }
+
+            .hero-orb::before {
+                font-size: 75px;
+            }
+
+            .glow-ring {
+                width: 290px;
+                height: 290px;
+            }
+
+            .featured {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-image {
+                min-height: 260px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 12px 5%;
+            }
+
+            .logo img {
+                width: 140px;
+            }
+
+            .nav-button {
+                padding: 8px 13px;
+                font-size: 12px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
             }
 
             .hero p {
-                font-size: 16px;
+                font-size: 15px;
             }
 
-            .section-title {
-                display: block;
+            .hero-visual {
+                transform: scale(0.85);
+                margin-top: -20px;
+                margin-bottom: -25px;
+            }
+
+            section {
+                padding: 65px 5%;
             }
 
             .section-title h2 {
-                font-size: 26px;
+                font-size: 29px;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
             }
 
             .stats {
                 grid-template-columns: 1fr;
-                margin: 60px 0;
             }
 
-            .about {
-                padding: 25px;
+            .featured-content {
+                padding: 30px;
             }
 
+            .featured-content h3 {
+                font-size: 27px;
+            }
+
+            .about-box {
+                padding: 28px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
         }
 
     </style>
-
 </head>
-
 
 <body>
 
+    <!-- =========================
+         HEADER
+    ========================= -->
 
-<!-- ================= HEADER ================= -->
+    <header>
+        <div class="navbar">
 
-<header>
-
-    <nav class="nav">
-
-        <div class="logo">
-    <img src="logo.png" alt="SMG Store">
-        </div>
-
-        <div class="nav-links">
-
-            <a href="#games">
-                بازی‌ها
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="SMG Store">
             </a>
 
-            <a href="#about">
-                درباره
-            </a>
+            <nav class="nav-links">
+                <a href="#home">خانه</a>
+                <a href="#games">بازی‌ها</a>
+                <a href="#about">درباره ما</a>
+                <a href="#games" class="nav-button">🎮 بازی‌ها</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <main id="home">
+
+        <div class="hero">
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    ✦ SMG Games
+                    <span>•</span>
+                    Game Studio
+                </div>
+
+                <h1>
+                    دنیای بازی‌های
+                    <span>SMG</span>
+                </h1>
+
+                <p>
+                    به SMG Store خوش آمدید.
+                    اینجا می‌توانید بازی‌های ساخته شده توسط SMG Games
+                    را مشاهده و دریافت کنید.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#games" class="btn btn-primary">
+                        🎮 مشاهده بازی‌ها
+                    </a>
+
+                    <a href="#about" class="btn btn-secondary">
+                        درباره SMG
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                <div class="glow-ring"></div>
+
+                <div class="hero-orb"></div>
+
+            </div>
 
         </div>
 
-    </nav>
 
-</header>
+        <!-- =========================
+             FEATURED GAME
+        ========================= -->
+
+        <section>
+
+            <div class="section-title">
+                <span>FEATURED</span>
+                <h2>بازی ویژه</h2>
+                <p>جدیدترین تجربه‌ی SMG Games</p>
+            </div>
 
 
-<!-- ================= HERO ================= -->
+            <div class="featured">
 
-<section class="hero">
+                <div class="featured-image">
+                    🎮
+                </div>
 
-    <div class="hero-badge">
-        🎮 SMG Game Store
-    </div>
+                <div class="featured-content">
 
-    <h1>
-        دنیای بازی‌های
-        <span>SMG</span>
-    </h1>
+                    <div class="featured-label">
+                        ⭐ پیشنهاد ویژه
+                    </div>
 
-    <p>
-        بازی‌های ساخته شده توسط SMG را اینجا پیدا کن،
-        مشخصات آن‌ها را ببین و وارد صفحه اختصاصی هر بازی شو.
-    </p>
+                    <h3>بازی من</h3>
 
-    <a class="hero-button" href="#games">
-        مشاهده بازی‌ها ↓
+                    <p>
+                        اولین بازی منتشر شده در SMG Store.
+                        برای مشاهده اطلاعات کامل بازی و دریافت آن وارد صفحه بازی شوید.
+                    </p>
+
+                    <div>
+                        <a href="game1.html" class="btn btn-primary">
+                            مشاهده بازی
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             GAMES
+        ========================= -->
+
+        <section id="games">
+
+            <div class="section-title">
+
+                <span>OUR GAMES</span>
+
+                <h2>بازی‌های SMG</h2>
+
+                <p>
+                    بازی‌های منتشر شده توسط SMG Games
+                </p>
+
+            </div>
+
+
+            <div class="games-grid">
+
+
+                <!-- GAME 1 -->
+
+                <article class="game-card">
+
+                    <div class="game-image">
+
+                        <img
+                            src="images/game1.jpg"
+                            alt="تصویر بازی من"
+                            onerror="this.style.display='none'"
+                        >
+
+                        <div class="game-placeholder">
+                            🎮
+                        </div>
+
+                    </div>
+
+
+                    <div class="game-info">
+
+                        <h3>بازی من</h3>
+
+                        <p>
+                            یک بازی ساخته شده توسط SMG Games.
+                        </p>
+
+                        <div class="game-meta">
+
+                            <span>Android</span>
+                            <span>Version 1.0</span>
+                            <span>SMG Games</span>
+
+                        </div>
+
+                        <a href="game1.html" class="game-button">
+                            مشاهده اطلاعات بازی →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- GAME 2 -->
+
+                <article class="game-card">
+
+                    <div class="game-image">
+
+                        <img
+                            src="images/game2.jpg"
+                            alt="تصویر بازی دوم"
+                            onerror="this.style.display='none'"
+                        >
+
+                        <div class="game-placeholder">
+                            🕹️
+                        </div>
+
+                    </div>
+
+
+                    <div class="game-info">
+
+                        <h3>بازی دوم</h3>
+
+                        <p>
+                            دومین بازی منتشر شده در SMG Store.
+                        </p>
+
+                        <div class="game-meta">
+
+                            <span>Android</span>
+                            <span>Version 1.0</span>
+                            <span>SMG Games</span>
+
+                        </div>
+
+                        <a href="game2.html" class="game-button">
+                            مشاهده اطلاعات بازی →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             STATS
+        ========================= -->
+
+        <section>
+
+            <div class="section-title">
+
+                <span>SMG STORE</span>
+
+                <h2>یک نگاه سریع</h2>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <div class="stat-number">
+                        2
+                    </div>
+
+                    <p>
+                        بازی منتشر شده
+                    </p>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-number">
+                        Android
+                    </div>
+
+                    <p>
+                        پلتفرم فعلی
+                    </p>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-number">
+                        SMG
+                    </div>
+
+                    <p>
+                        توسعه‌دهنده
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ABOUT
+        ========================= -->
+
+        <section id="about">
+
+            <div class="about">
+
+
+                <div class="about-box">
+
+                    <h3>
+                        درباره SMG Games
+                    </h3>
+
+                    <p>
+                        SMG Games یک استودیوی مستقل برای ساخت و انتشار بازی است.
+                        هدف ما ساخت تجربه‌های سرگرم‌کننده و متفاوت و ارائه‌ی
+                        آن‌ها در یک فروشگاه ساده و حرفه‌ای است.
+                    </p>
+
+                </div>
+
+
+                <div class="about-list">
+
+                    <div class="about-item">
+
+                        <div class="about-icon">
+                            🎮
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                بازی‌های مستقل
+                            </strong>
+
+                            <span>
+                                ساخته شده توسط SMG Games
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-item">
+
+                        <div class="about-icon">
+                            📱
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Android
+                            </strong>
+
+                            <span>
+                                تمرکز فعلی روی بازی‌های اندروید
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-item">
+
+                        <div class="about-icon">
+                            🚀
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                در حال توسعه
+                            </strong>
+
+                            <span>
+                                بازی‌های بیشتری در آینده منتشر خواهند شد
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-logo">
+                <span>SMG</span> Store
+            </div>
+
+            <div class="footer-text">
+                © 2026 SMG Games. All rights reserved.
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SCROLL TOP -->
+
+    <a href="#home" class="scroll-top">
+        ↑
     </a>
-
-</section>
-
-
-<!-- ================= GAMES ================= -->
-
-<main class="container" id="games">
-
-    <div class="section-title">
-
-        <div>
-            <h2>🎮 بازی‌های SMG</h2>
-
-            <p>
-                مجموعه بازی‌های منتشر شده
-            </p>
-        </div>
-
-    </div>
-
-
-    <section class="games">
-
-
-        <!-- ================= GAME 1 ================= -->
-
-        <div class="game">
-
-            <div class="game-image">
-                🎮
-            </div>
-
-            <div class="game-info">
-
-                <h3>
-                    بازی من
-                </h3>
-
-                <p>
-                    توضیحات بازی را اینجا قرار می‌دهیم.
-                    نسخه 1.0
-                </p>
-
-                <div class="game-meta">
-
-                    <span class="tag">
-                        Android
-                    </span>
-
-                    <span class="tag">
-                        نسخه 1.0
-                    </span>
-
-                </div>
-
-                <a class="download" href="game1.html">
-                    🎮 مشاهده بازی
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- ================= GAME 2 ================= -->
-
-        <div class="game">
-
-            <div class="game-image">
-                🎮
-            </div>
-
-            <div class="game-info">
-
-                <h3>
-                    بازی دوم
-                </h3>
-
-                <p>
-                    توضیحات بازی دوم را اینجا قرار می‌دهیم.
-                    نسخه 1.0
-                </p>
-
-                <div class="game-meta">
-
-                    <span class="tag">
-                        Android
-                    </span>
-
-                    <span class="tag">
-                        نسخه 1.0
-                    </span>
-
-                </div>
-
-                <a class="download" href="game2.html">
-                    🎮 مشاهده بازی
-                </a>
-
-            </div>
-
-        </div>
-
-
-    </section>
-
-
-    <!-- ================= STATS ================= -->
-
-    <section class="stats">
-
-        <div class="stat">
-
-            <strong>
-                2
-            </strong>
-
-            <span>
-                بازی منتشر شده
-            </span>
-
-        </div>
-
-
-        <div class="stat">
-
-            <strong>
-                SMG
-            </strong>
-
-            <span>
-                سازنده بازی‌ها
-            </span>
-
-        </div>
-
-
-        <div class="stat">
-
-            <strong>
-                2026
-            </strong>
-
-            <span>
-                شروع فعالیت
-            </span>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= ABOUT ================= -->
-
-    <section class="about" id="about">
-
-        <h2>
-            درباره SMG Store
-        </h2>
-
-        <p>
-            SMG Store یک فروشگاه اختصاصی برای انتشار بازی‌های ساخته شده
-            توسط SMG است. در اینجا می‌توانی بازی‌های منتشر شده را مشاهده
-            کنی و وارد صفحه اختصاصی هر بازی شوی.
-        </p>
-
-    </section>
-
-
-</main>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-    © 2026 <strong>SMG Store</strong>
-
-    <br>
-
-    تمامی حقوق محفوظ است.
-
-</footer>
 
 
 </body>
-
-</html>
+                                   </html>
