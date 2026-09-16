@@ -1,0 +1,315 @@
+<script>
+/* ============================================================
+   📚 داده‌های بازی‌ها
+============================================================ */
+const games = [
+  {
+    title: "Grand Theft Auto V",
+    icon: "🚗",
+    category: "اکشن",
+    size: "۹۵ GB",
+    version: "v1.0.2",
+    rating: 4.9,
+    downloads: 0,
+    quality: "REPACK",
+    tag: "hot",
+    link: "#",
+    counterKey: "gta-v"     // ← کلید یکتا برای شمارش
+  }
+];
+
+/* ============ پردانلودترین‌ها ============ */
+const topGames = [
+  {
+    title: "Grand Theft Auto V",
+    icon: "🚗",
+    category: "اکشن",
+    size: "۹۵ GB",
+    downloads: 0,
+    link: "#",
+    counterKey: "gta-v"
+  }
+];
+
+/* ============================================================
+   📊 تبدیل اعداد به فارسی
+============================================================ */
+function toFa(n) {
+  return String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+}
+function formatNumber(n) {
+  if (!n) return '۰';
+  if (n >= 1000000) return toFa((n / 1000000).toFixed(1)) + 'M';
+  if (n >= 1000) return toFa((n / 1000).toFixed(1)) + 'K';
+  return toFa(n);
+}
+
+/* ============================================================
+   🌐 CounterAPI — شمارش واقعی
+============================================================ */
+const NAMESPACE = 'smggames';  // ← اگه اسم دیگه‌ای می‌خوای، عوضش کن
+
+// گرفتن عدد فعلی (بدون زیاد کردن)
+async function getDownloadCount(counterKey) {
+  if (!counterKey) return null;
+  try {
+    const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${counterKey}`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.count;
+  } catch (e) {
+    console.warn('getCount error:', e);
+    return null;
+  }
+}
+
+// زیاد کردن عدد (هنگام کلیک)
+async function incrementDownload(counterKey) {
+  if (!counterKey) return null;
+  try {
+    const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${counterKey}/up`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.count;
+  } catch (e) {
+    console.warn('increment error:', e);
+    return null;
+  }
+}
+
+/* ============================================================
+   🎴 کارت بازی
+============================================================ */
+function renderGameCard(g, index) {
+  const tagMap = {
+    new: { text: 'NEW', cls: 'tag-new' },
+    hot: { text: 'HOT', cls: 'tag-hot' },
+    free: { text: 'رایگان', cls: 'tag-free' },
+    update: { text: 'آپدیت', cls: 'tag-update' }
+  };
+  const t = g.tag ? tagMap[g.tag] : null;
+  const tagHTML = t ? `<div class="game-tag ${t.cls}">${t.text}</div>` : '';
+  const coverInner = g.cover
+    ? `<img src="${g.cover}" alt="${g.title}" loading="lazy" />`
+    : (g.icon || '🎮');
+  const qualityHTML = g.quality ? `<div class="game-quality">${g.quality}</div>` : '';
+  const dlCount = formatNumber(g.downloads);
+
+  return `
+    <article class="game-card" data-index="${index}" data-counter="${g.counterKey || ''}">
+      <a href="${g.link || '#'}" style="display:contents" onclick="handleDownload(event, ${index})">
+        <div class="game-cover">
+          ${tagHTML}
+          ${coverInner}
+          ${qualityHTML}
+        </div>
+        <div class="game-body">
+          <div class="game-title">${g.title}</div>
+          <div class="game-info">
+            <span>📁 ${g.category || '—'}</span>
+            <span>💾 ${g.size || '—'}</span>
+          </div>
+        </div>
+        <div class="game-footer">
+          <span class="game-rating">⭐ ${toFa(g.rating || '—')}</span>
+          <span class="game-downloads" data-dl-index="${index}">⬇ ${dlCount}</span>
+        </div>
+      </a>
+    </article>
+  `;
+}
+
+/* ============================================================
+   🖱️ کلیک روی بازی — زیاد کردن شمارنده
+============================================================ */
+async function handleDownload(e, index) {
+  const g = games[index];
+  if (!g) return;
+
+  // به کاربر فیدبک بده
+  const el = document.querySelector(`[data-dl-index="${index}"]`);
+  if (el) el.innerHTML = `⏳ در حال ثبت...`;
+
+  if (g.counterKey) {
+    const newCount = await incrementDownload(g.counterKey);
+    if (newCount !== null) {
+      if (el) el.innerHTML = `⬇ ${formatNumber(newCount)}`;
+      // ذخیره‌ی محلی برای نمایش سریع در رفرش بعدی
+      localStorage.setItem(`dl_${g.counterKey}`, newCount);
+    } else {
+      if (el) el.innerHTML = `⬇ ${formatNumber(g.downloads)}`;
+      alert('⚠️ اتصال به سرور شمارش برقرار نشد. ممکنه فیلتر باشه.');
+    }
+  }
+
+  if (!g.link || g.link === '#') {
+    e.preventDefault();
+    setTimeout(() => alert(`🔗 لینک دانلود "${g.title}" به‌زودی اضافه می‌شه.`), 200);
+  }
+}
+
+/* ============================================================
+   📥 بارگذاری اعداد واقعی هنگام لود صفحه
+============================================================ */
+async function loadRealCounts() {
+  for (let i = 0; i < games.length; i++) {
+    const g = games[i];
+    if (!g.counterKey) continue;
+
+    // اول از localStorage نشون بده (برای سرعت)
+    const cached = localStorage.getItem(`dl_${g.counterKey}`);
+    const el = document.querySelector(`[data-dl-index="${i}"]`);
+    if (cached && el) el.innerHTML = `⬇ ${formatNumber(+cached)}`;
+
+    // بعد از سرور بگیر
+    const count = await getDownloadCount(g.counterKey);
+    if (count !== null && el) {
+      el.innerHTML = `⬇ ${formatNumber(count)}`;
+      localStorage.setItem(`dl_${g.counterKey}`, count);
+    }
+  }
+}
+
+/* ============================================================
+   رندر گرید
+============================================================ */
+function renderGames(list = games) {
+  const grid = document.getElementById('gamesGrid');
+  if (!list.length) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🎮</div>
+        <h3>هنوز بازی‌ای اضافه نشده</h3>
+        <p>کافیه فایل <code>index.html</code> رو باز کنی و از بخش <code>const games = [...]</code> بازی‌هات رو اضافه کنی.</p>
+      </div>
+    `;
+    return;
+  }
+  grid.innerHTML = list.map(renderGameCard).join('');
+}
+
+/* ============================================================
+   رندر پردانلودها
+============================================================ */
+function renderTop() {
+  const list = document.getElementById('topList');
+  if (!topGames.length) {
+    list.innerHTML = `
+      <div class="empty-state" style="border-radius:0;border:none;background:transparent">
+        <div class="empty-icon">📊</div>
+        <h3>لیست پردانلودها خالی است</h3>
+        <p>از آرایه <code>topGames</code> بازی‌های محبوبت رو اضافه کن.</p>
+      </div>
+    `;
+    return;
+  }
+  list.innerHTML = topGames.map((g, i) => `
+    <div class="top-row">
+      <div class="top-rank">${toFa(String(i + 1).padStart(2, '0'))}</div>
+      <div class="top-info">
+        <div class="top-cover">${g.cover ? `<img src="${g.cover}" alt="" />` : (g.icon || '🎮')}</div>
+        <div style="min-width:0">
+          <div class="top-name">${g.title}</div>
+          <div class="top-cat">${g.category || '—'}</div>
+        </div>
+      </div>
+      <div class="top-size">${g.size || '—'}</div>
+      <div class="top-dl" data-top-dl="${i}">⬇ ${formatNumber(g.downloads)}</div>
+    </div>
+  `).join('');
+}
+
+/* ============================================================
+   📊 آمار سریع
+============================================================ */
+function updateStats() {
+  const totalGames = games.length;
+  const totalDl = games.reduce((s, g) => s + (g.downloads || 0), 0);
+  const avgRating = games.length
+    ? (games.reduce((s, g) => s + (g.rating || 0), 0) / games.length).toFixed(1)
+    : '—';
+
+  document.getElementById('statGames').textContent = toFa(totalGames);
+  document.getElementById('statDownloads').textContent = formatNumber(totalDl);
+  document.getElementById('statRating').textContent = toFa(avgRating);
+}
+
+/* ============================================================
+   Mega menu
+============================================================ */
+document.querySelectorAll('.menu-item').forEach(item => {
+  const mega = item.querySelector('.mega');
+  if (!mega) return;
+  let timer;
+  item.addEventListener('mouseenter', () => {
+    clearTimeout(timer);
+    document.querySelectorAll('.menu-item.open').forEach(i => i.classList.remove('open'));
+    item.classList.add('open');
+  });
+  item.addEventListener('mouseleave', () => {
+    timer = setTimeout(() => item.classList.remove('open'), 150);
+  });
+});
+
+/* ============================================================
+   Search — Ctrl+K
+============================================================ */
+const searchInput = document.getElementById('searchInput');
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault();
+    searchInput?.focus();
+  }
+});
+searchInput?.addEventListener('input', (e) => {
+  const q = e.target.value.trim().toLowerCase();
+  if (!q) return renderGames();
+  const filtered = games.filter(g =>
+    g.title.toLowerCase().includes(q) ||
+    (g.category || '').toLowerCase().includes(q)
+  );
+  renderGames(filtered);
+});
+
+/* ============================================================
+   Tabs
+============================================================ */
+document.querySelectorAll('.sec-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.sec-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const t = tab.dataset.tab;
+    let list = [...games];
+    if (t === 'popular') list.sort((a, b) => (b.downloads || 0) - (a.downloads || 0));
+    if (t === 'top') list.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+    renderGames(list);
+  });
+});
+
+/* ============================================================
+   FAQ accordion
+============================================================ */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+/* ============================================================
+   Burger (موبایل)
+============================================================ */
+document.getElementById('burger')?.addEventListener('click', () => {
+  alert('منوی موبایل — می‌تونی یه دراور کامل اینجا اضافه کنی');
+});
+
+/* ============================================================
+   🚀 Init
+============================================================ */
+renderGames();
+renderTop();
+updateStats();
+loadRealCounts();   // ← اعداد واقعی رو از سرور می‌گیره
+  </script>
